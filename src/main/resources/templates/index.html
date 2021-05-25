@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link th:rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}">
+    <link th:rel="stylesheet" th:href="@{/fontawesome/css/all.css}">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h1>Bem vindo a agenda eletronica</h1>
+            <div class="d-flex justify-content-end">
+                <a class="btn btn-primary" th:href="@{/contatos/form}">
+                    <i class="fas fa-plus"></i> Novo contato
+                </a>
+            </div>
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>nome</th>
+                <th>telefone</th>
+                <th>email</th>
+                <th>ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="contato : ${contatos}">
+                <td th:text="${contato.id}">id</td>
+                <td th:text="${contato.nome}">nome</td>
+                <td th:text="${contato.telefone}">fone</td>
+                <td th:text="${contato.email}">email</td>
+                <td>
+                    <a th:href="@{/contatos/{id}/editar(id=${contato.id})}" class="btn btn-success">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a th:href="@{/contatos/{id}/remover(id=${contato.id})}" class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
